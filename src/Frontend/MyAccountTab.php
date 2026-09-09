@@ -39,13 +39,13 @@ class MyAccountTab {
         foreach ( $items as $key => $value ) {
             $new_menu[$key] = $value;
             if ( 'orders' === $key ) {
-                $new_menu['minha-carteira'] = __( 'Minha Carteira', 'digital-wallet-for-woocommerce' );
+                $new_menu['minha-carteira'] = __( 'Minha Carteira', 'jc-digital-wallet-for-woocommerce' );
             }
         }
         
         // Fallback de segurança caso 'orders' tenha sido removido pelo tema
         if ( ! isset( $new_menu['minha-carteira'] ) ) {
-            $new_menu['minha-carteira'] = __( 'Minha Carteira', 'digital-wallet-for-woocommerce' );
+            $new_menu['minha-carteira'] = __( 'Minha Carteira', 'jc-digital-wallet-for-woocommerce' );
         }
         
         return $new_menu;
@@ -68,7 +68,7 @@ class MyAccountTab {
                 'pending_balance' => $pending_balance, // Passando a variável para o HTML
                 'history'         => $history 
             ], 
-            'digital-wallet-for-woocommerce/', 
+            'jc-digital-wallet-for-woocommerce/', 
             WCW_PLUGIN_DIR . 'templates/' 
         );
     }

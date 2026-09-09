@@ -46,7 +46,7 @@ class Install {
         }
 
         $product = new \WC_Product_Simple();
-        $product->set_name( __( 'Recarga de Saldo - Carteira Digital', 'digital-wallet-for-woocommerce' ) );
+        $product->set_name( __( 'Recarga de Saldo - Carteira Digital', 'jc-digital-wallet-for-woocommerce' ) );
         $product->set_status( 'publish' );
         $product->set_catalog_visibility( 'hidden' );
         $product->set_regular_price( '1.00' ); // String padrão do Woo para Decimais

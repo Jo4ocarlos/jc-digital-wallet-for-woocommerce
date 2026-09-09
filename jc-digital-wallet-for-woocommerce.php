@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name:       Digital Wallet & Cashback for WooCommerce
- * Plugin URI:        https://github.com/Jo4ocarlos/digital-wallet-for-woocommerce.git
+ * Plugin Name:       JC Digital Wallet & Cashback for WooCommerce
+ * Plugin URI:        https://github.com/Jo4ocarlos/jc-digital-wallet-for-woocommerce.git
  * Description:       Carteira digital com sistema de cashback, painel de controle e pagamento com saldo.
  * Version:           1.0.0
  * Author:            João Carlos de Almeida Silva
  * Author URI:        https://www.linkedin.com/in/joão-carlos-de-almeida-silva-724579171
- * Text Domain:       digital-wallet-for-woocommerce
+ * Text Domain:       jc-digital-wallet-for-woocommerce
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

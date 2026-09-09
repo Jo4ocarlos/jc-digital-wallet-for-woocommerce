@@ -38,7 +38,7 @@ class Shortcodes {
         wp_enqueue_style( 'wcw-frontend-style', WCW_PLUGIN_URL . 'assets/css/frontend.css', [], WCW_VERSION );
 
         $html  = '<div class="wcw-wallet-widget">';
-        $html .= '<span class="wcw-wallet-title" style="color: ' . esc_attr( $params['cor_titulo'] ) . ';">' . esc_html__( 'Seu Saldo', 'digital-wallet-for-woocommerce' ) . '</span>';
+        $html .= '<span class="wcw-wallet-title" style="color: ' . esc_attr( $params['cor_titulo'] ) . ';">' . esc_html__( 'Seu Saldo', 'jc-digital-wallet-for-woocommerce' ) . '</span>';
         $html .= '<span class="wcw-wallet-value" style="color: ' . esc_attr( $params['cor_valor'] ) . ';">R$ ' . esc_html( $formatted_balance ) . '</span>';
         $html .= '</div>';
 

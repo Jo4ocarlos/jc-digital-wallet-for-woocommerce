@@ -152,7 +152,7 @@ class CheckoutCashback {
             <div class="wcw-wallet-box">
                 <label class="wcw-wallet-label">
                     <input type="checkbox" id="wcw_checkbox_saldo" name="wcw_use_balance" value="1" <?php echo esc_attr( $is_checked ); ?>> 
-                    💳 <?php esc_html_e( 'Usar meu saldo de', 'digital-wallet-for-woocommerce' ); ?> <?php echo wp_kses_post( wc_price( $balance ) ); ?>
+                    💳 <?php esc_html_e( 'Usar meu saldo de', 'jc-digital-wallet-for-woocommerce' ); ?> <?php echo wp_kses_post( wc_price( $balance ) ); ?>
                 </label>
             </div>
             <?php
@@ -175,7 +175,7 @@ class CheckoutCashback {
         if ( $eligible_cashback > 0 ) {
             ?>
             <tr class="wcw-cashback-row">
-                <th><?php esc_html_e( 'Bônus de Retorno na Carteira', 'digital-wallet-for-woocommerce' ); ?></th>
+                <th><?php esc_html_e( 'Bônus de Retorno na Carteira', 'jc-digital-wallet-for-woocommerce' ); ?></th>
                 <td><strong class="wcw-cashback-amount">+ <?php echo wp_kses_post( wc_price( $eligible_cashback ) ); ?></strong></td>
             </tr>
             <?php
@@ -203,7 +203,7 @@ class CheckoutCashback {
             $discount   = min( $balance, $cart_total );
             
             if ( $discount > 0 ) {
-                $cart->add_fee( __( 'Pagamento via Carteira', 'digital-wallet-for-woocommerce' ), -$discount, false );
+                $cart->add_fee( __( 'Pagamento via Carteira', 'jc-digital-wallet-for-woocommerce' ), -$discount, false );
             }
         }
     }
@@ -214,7 +214,7 @@ class CheckoutCashback {
     public function tag_wallet_fee_item( $item, $fee_key, $fee, $order ) {
         // Defesa: Verifica se a sessão realmente existe antes de tentar ler
         if ( isset( WC()->session ) && WC()->session->get( 'wcw_use_balance' ) && $fee->amount < 0 ) {
-            $expected_id = sanitize_title( __( 'Pagamento via Carteira', 'digital-wallet-for-woocommerce' ) );
+            $expected_id = sanitize_title( __( 'Pagamento via Carteira', 'jc-digital-wallet-for-woocommerce' ) );
             if ( $fee->id === $expected_id ) {
                 $item->add_meta_data( '_is_wcw_wallet_payment', 'yes' );
             }
