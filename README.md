@@ -1,4 +1,4 @@
-# 💳 WooCommerce Digital Wallet & Intelligent Cashback
+# 💳 Digital-wallet-for-woocommerce
 
 ![Versão](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0+-success.svg)
