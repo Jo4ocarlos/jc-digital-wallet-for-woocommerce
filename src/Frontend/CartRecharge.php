@@ -26,7 +26,7 @@ class CartRecharge {
         }
 
         if ( ! isset( $_POST['wcw_saldo_security'] ) || ! wp_verify_nonce( sanitize_key( $_POST['wcw_saldo_security'] ), 'wcw_adicionar_saldo_nonce' ) ) {
-            wc_add_notice( __( 'Requisição inválida. Falha de segurança.', 'woo-digital-wallet' ), 'error' );
+            wc_add_notice( __( 'Requisição inválida. Falha de segurança.', 'digital-wallet-for-woocommerce' ), 'error' );
             return;
         }
 
@@ -41,7 +41,7 @@ class CartRecharge {
             wp_safe_redirect( wc_get_checkout_url() );
             exit;
         } else {
-            wc_add_notice( __( 'Por favor, insira um valor válido para recarga.', 'woo-digital-wallet' ), 'error' );
+            wc_add_notice( __( 'Por favor, insira um valor válido para recarga.', 'digital-wallet-for-woocommerce' ), 'error' );
         }
     }
 
@@ -58,7 +58,7 @@ class CartRecharge {
 
     public function rename_recharge_product( $item_name, $cart_item, $cart_item_key ) {
         if ( isset( $cart_item['wcw_custom_recharge_value'] ) ) {
-            return esc_html__( 'Recarga de Saldo na Carteira Digital', 'woo-digital-wallet' );
+            return esc_html__( 'Recarga de Saldo na Carteira Digital', 'digital-wallet-for-woocommerce' );
         }
         return $item_name;
     }

@@ -47,7 +47,7 @@ Sistemas que lidam com saldo exigem rigor bancário. Este plugin foi arquitetado
 
 ## 📂 Estrutura de Diretórios
 
-    woo-digital-wallet/
+    digital-wallet-for-woocommerce/
     ├── assets/
     │   ├── css/
     │   └── js/
@@ -67,7 +67,7 @@ Sistemas que lidam com saldo exigem rigor bancário. Este plugin foi arquitetado
     │   ├── admin-settings.php
     │   └── my-account-wallet.php
     ├── composer.json
-    ├── woo-digital-wallet.php
+    ├── digital-wallet-for-woocommerce.php
     └── README.md
 
 ---
@@ -75,10 +75,10 @@ Sistemas que lidam com saldo exigem rigor bancário. Este plugin foi arquitetado
 ## ⚙️ Instalação em Ambiente de Desenvolvimento
 
 1. Clone o repositório na pasta de plugins do WordPress:
-   `git clone https://github.com/seu-usuario/woo-digital-wallet.git wp-content/plugins/woo-digital-wallet`
+   `git clone https://github.com/seu-usuario/digital-wallet-for-woocommerce.git wp-content/plugins/digital-wallet-for-woocommerce`
 
 2. Acesse a pasta e gere o autoloader:
-   `cd wp-content/plugins/woo-digital-wallet && composer dump-autoload -o`
+   `cd wp-content/plugins/digital-wallet-for-woocommerce && composer dump-autoload -o`
 
 3. Ative o plugin no painel do WordPress e acesse **Carteira Digital** para definir as porcentagens, travas de recarga e regras de negócio.
 

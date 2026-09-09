@@ -17,7 +17,7 @@ class Settings {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
         
         //  Link direto para as configurações na lista de plugins
-        $plugin_basename = plugin_basename( WCW_PLUGIN_DIR . 'woo-digital-wallet.php' );
+        $plugin_basename = plugin_basename( WCW_PLUGIN_DIR . 'digital-wallet-for-woocommerce.php' );
         add_filter( 'plugin_action_links_' . $plugin_basename, [ $this, 'add_plugin_action_links' ] );
     }
 
@@ -43,7 +43,7 @@ class Settings {
      */
     public function add_plugin_action_links( $links ) {
         // array_unshift coloca o nosso link como o PRIMEIRO da lista (antes de Desativar)
-        $settings_link = '<a href="admin.php?page=wcw-carteira-settings" style="font-weight: bold; color: #2271b1;">' . esc_html__( 'Configurações', 'woo-digital-wallet' ) . '</a>';
+        $settings_link = '<a href="admin.php?page=wcw-carteira-settings" style="font-weight: bold; color: #2271b1;">' . esc_html__( 'Configurações', 'digital-wallet-for-woocommerce' ) . '</a>';
         array_unshift( $links, $settings_link );
         
         return $links;
@@ -51,8 +51,8 @@ class Settings {
 
     public function add_menu_page() {
         add_menu_page(
-            __( 'Carteira & Cashback', 'woo-digital-wallet' ), 
-            __( 'Carteira Digital', 'woo-digital-wallet' ),          
+            __( 'Carteira & Cashback', 'digital-wallet-for-woocommerce' ), 
+            __( 'Carteira Digital', 'digital-wallet-for-woocommerce' ),          
             'manage_woocommerce',        
             'wcw-carteira-settings',     
             [ $this, 'render_settings_page' ], 
