@@ -1,0 +1,30 @@
+{
+    "name": "jo4ocarlos/woo-digital-wallet",
+    "description": "Motor financeiro avançado para WooCommerce com Carteira Digital e Cashback Inteligente.",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "João Carlos de Almeida Silva",
+            "role": "Software Engineer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "WooDigitalWallet\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "platform-check": true
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php -r \"echo 'Autoloader otimizado com sucesso para produção.\\n';\""
+        ]
+    }
+}

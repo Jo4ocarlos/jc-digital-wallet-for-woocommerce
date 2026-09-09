@@ -1,0 +1,275 @@
+/* =========================================================
+   Frontend: Checkout Cashback & Wallet Box
+========================================================= */
+.wcw-cashback-row th, 
+.wcw-cashback-row td {
+    background-color: #f0f6fc !important;
+    padding: 10px 12px !important;
+    border-top: 1px dashed #cce3f6 !important;
+    border-bottom: 1px dashed #cce3f6 !important;
+}
+
+.wcw-cashback-row th { 
+    color: #2271b1 !important; 
+    font-weight: 600 !important; 
+}
+
+.wcw-cashback-row td { 
+    text-align: right !important; 
+}
+
+.wcw-cashback-amount { 
+    color: #2271b1 !important; 
+    font-weight: 700 !important; 
+}
+
+.wcw-wallet-box { 
+    background: #f0f6fc; 
+    padding: 15px; 
+    border-radius: 5px; 
+    border-left: 4px solid #2271b1; 
+    margin-bottom: 20px; 
+}
+
+.wcw-wallet-label { 
+    cursor: pointer; 
+    font-weight: bold; 
+    color: #2271b1; 
+}
+
+/* =========================================================
+   Frontend: Shortcode do Widget de Saldo
+========================================================= */
+.wcw-wallet-widget { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    line-height: 1.2; 
+    font-family: inherit; 
+}
+
+.wcw-wallet-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    margin-bottom: 2px; 
+}
+
+.wcw-wallet-value { 
+    font-size: 16px; 
+    font-weight: 700; 
+}
+/* =========================================================
+   Frontend: Painel Minha Conta (Wallet Dashboard)
+========================================================= */
+.wcw-account-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.wcw-main-title {
+    margin-top: 0;
+    color: #333;
+}
+
+.wcw-subtitle {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.wcw-balance-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 6px;
+    border-left: 5px solid; /* Cor injetada via PHP */
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.wcw-balance-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wcw-balance-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+}
+
+.wcw-balance-amount {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.wcw-balance-warning {
+    color: #d63031;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.wcw-recharge-box {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.wcw-recharge-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.wcw-recharge-form {
+    display: flex;
+    gap: 10px;
+}
+
+.wcw-input-group {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 4px;
+    padding: 0 10px;
+}
+
+.wcw-currency-symbol {
+    font-weight: bold;
+    color: #555;
+    margin-right: 5px;
+}
+
+.wcw-input-group input {
+    border: none !important;
+    background: transparent !important;
+    width: 100px;
+    padding: 8px 0 !important;
+    box-shadow: none !important;
+}
+
+.wcw-input-group input:focus {
+    outline: none;
+}
+
+.wcw-btn-recharge {
+    background-color: #2271b1 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 4px;
+    padding: 0 20px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.wcw-btn-recharge:hover {
+    background-color: #135e96 !important;
+}
+
+.wcw-custom-table th {
+    background: #f8f9fa;
+}
+
+.wcw-empty-ledger {
+    text-align: center;
+    padding: 30px !important;
+    color: #777;
+}
+
+/* =========================================================
+   Frontend: Badges de Extrato (Minha Conta)
+========================================================= */
+.wcw-badge {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    display: inline-block; 
+}
+
+/* Variações Semânticas de Cor */
+.wcw-badge-cashback {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.wcw-badge-recharge {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.wcw-badge-purchase {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.wcw-badge-refund {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* =========================================================
+   Carteira Digital: Painel Minha Conta
+========================================================= */
+
+/* Cores de Estado Dinâmico */
+.wcw-status-positive {
+    color: #2271b1 !important;
+}
+
+.wcw-status-negative {
+    color: #d63031 !important;
+}
+
+.wcw-border-positive {
+    border-left-color: #2271b1 !important;
+}
+
+.wcw-border-negative {
+    border-left-color: #d63031 !important;
+}
+
+/* Painel de Shadow Ledger (Cashback Pendente) */
+.wcw-pending-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff5e6;
+    border-left: 3px solid #f39c12;
+    border-radius: 4px;
+}
+
+.wcw-pending-label {
+    display: block;
+    font-size: 12px;
+    color: #d68910;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.wcw-pending-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #b9770e;
+}
+
+/* Alinhamentos da Tabela */
+.wcw-text-right {
+    text-align: right !important;
+}
+
+.wcw-font-bold {
+    font-weight: 600 !important;
+}

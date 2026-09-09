@@ -1,0 +1,75 @@
+/* =========================================================
+   Painel de Configurações - Carteira Digital
+========================================================= */
+.wcw-admin-wrap {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.wcw-admin-card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.wcw-admin-notice-box {
+    background: #f0f6fc;
+    border-left: 4px solid #2271b1;
+    padding: 12px;
+    margin-bottom: 25px;
+}
+
+.wcw-admin-notice-box p {
+    margin: 0;
+}
+
+.wcw-admin-section-title {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.wcw-admin-section-title:first-of-type {
+    margin-top: 0;
+}
+
+/* =========================================================
+   Estilos Semânticos de Aviso (Notices) e Tipografia
+========================================================= */
+
+/* Ícone de Carteira no Título */
+.wcw-header-icon {
+    font-size: 28px;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+/* Caixa de Aviso de Sucesso (Instruções) */
+.wcw-notice-success {
+    border-left-color: #27ae60;
+    background: #f6fcf8;
+}
+
+/* Textos e Tipografia do Painel */
+.wcw-text-highlight {
+    font-size: 14px;
+}
+
+.wcw-text-muted {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Bloco de Código (Shortcode) */
+.wcw-code-snippet {
+    font-size: 16px;
+    padding: 6px 12px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
