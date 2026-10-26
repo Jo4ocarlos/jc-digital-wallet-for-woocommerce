@@ -1,6 +1,6 @@
 # 💳 JC Digital Wallet & Cashback for WooCommerce
 
-![Versão](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Versão](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0+-success.svg)
 ![WooCommerce](https://img.shields.io/badge/WooCommerce-7.0+-purple.svg)
 ![PHP](https://img.shields.io/badge/PHP-7.4+-8892BF.svg)
@@ -40,7 +40,10 @@ Sistemas que lidam com saldo exigem rigor bancário. Este plugin foi arquitetado
 * **Single Source of Truth (Ledger Imutável):** O saldo do usuário não é armazenado em cache no `wp_user_meta` (o que gera dessincronização). Ele é calculado dinamicamente no banco de dados através da soma de uma tabela customizada (`wcw_transactions`) com status baseados em *Event-Driven Architecture*.
 * **Máquina de Estados (State Machine):** Separação estrita de status (`pending`, `cleared`, `cancelled`). Isso permite provisionar saldos para o cliente visualizar no painel, bloqueando o saque até a efetiva liquidação bancária via WooCommerce Hooks.
 * **Prevenção de Double-Spending (Gasto Duplo):** O motor financeiro (`WalletManager`) utiliza transações SQL (`START TRANSACTION`) atreladas a travas de linha (`FOR UPDATE`). Isso impede que requisições de saque simultâneas burlem a verificação de saldo.
-* **Mitigação de Race Conditions:** Gateways enviam webhooks duplicados no mesmo milissegundo. A injeção de fundos utiliza um **Mutex Atômico** (via `add_option`), garantindo que o pedido seja processado estritamente uma única vez.
+* **Idempotência no Banco:** Gateways enviam webhooks duplicados no mesmo milissegundo. Cada evento financeiro grava com uma `idempotency_key` sob índice `UNIQUE`, e a liquidação é um `UPDATE ... WHERE status = 'pending'` atômico. O pedido é processado uma única vez sem depender de travas em `wp_options`.
+* **Ciclo de Vida do Pedido:** Cancelamento e reembolso total devolvem o saldo usado e revertem o crédito prometido (mesmo já liberado, deixando o saldo negativo se o cliente já gastou). Reembolso parcial reverte o cashback na proporção. Reativar um pedido cancelado debita o saldo de novo. Pedido `failed` não devolve nada, porque o cliente pode pagá-lo de novo com o mesmo desconto.
+* **Checkout Clássico e em Blocos:** O débito do saldo acontece antes do gateway nos dois fluxos (`woocommerce_checkout_order_processed` e `woocommerce_store_api_checkout_order_processed`). Saldo insuficiente aborta o checkout.
+* **Limites de Recarga:** Valor mínimo e máximo ajustáveis pelos filtros `wcw_recharge_min_amount` e `wcw_recharge_max_amount`. O produto de recarga não pode ser comprado direto por `?add-to-cart`.
 * **Arquitetura MVC & Template Overrides:** Views desacopladas em `/templates/`. O carregamento feito via `wc_get_template()` permite que desenvolvedores front-end sobrescrevam o layout em seus *Child Themes* sem alterar o Core do plugin.
 
 ---

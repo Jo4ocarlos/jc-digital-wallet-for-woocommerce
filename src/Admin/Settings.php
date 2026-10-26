@@ -12,10 +12,9 @@ class Settings {
         add_action( 'admin_init', [ $this, 'register_settings' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
 
-        add_action( 'admin_menu', [ $this, 'add_menu_page' ] );
-        add_action( 'admin_init', [ $this, 'register_settings' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
-        
+        // O options.php exige manage_options por padrão. Alinha com a capability do menu.
+        add_filter( 'option_page_capability_wcw_wallet_options_group', [ $this, 'settings_capability' ] );
+
         //  Link direto para as configurações na lista de plugins
         $plugin_basename = plugin_basename( WCW_PLUGIN_DIR . 'jc-digital-wallet-for-woocommerce.php' );
         add_filter( 'plugin_action_links_' . $plugin_basename, [ $this, 'add_plugin_action_links' ] );
@@ -43,7 +42,7 @@ class Settings {
      */
     public function add_plugin_action_links( $links ) {
         // array_unshift coloca o nosso link como o PRIMEIRO da lista (antes de Desativar)
-        $settings_link = '<a href="admin.php?page=wcw-carteira-settings" style="font-weight: bold; color: #2271b1;">' . esc_html__( 'Configurações', 'jc-digital-wallet-for-woocommerce' ) . '</a>';
+        $settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=wcw-carteira-settings' ) ) . '" style="font-weight: bold; color: #2271b1;">' . esc_html__( 'Configurações', 'jc-digital-wallet-for-woocommerce' ) . '</a>';
         array_unshift( $links, $settings_link );
         
         return $links;
@@ -64,9 +63,14 @@ class Settings {
     public function register_settings() {
         $group = 'wcw_wallet_options_group';
 
-        register_setting( $group, 'wcw_cashback_status', [ 'type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => 'yes' ] );
-        register_setting( $group, 'wcw_cashback_percent', [ 'type' => 'number', 'sanitize_callback' => 'absint', 'default' => 5 ] );
-        register_setting( $group, 'wcw_cashback_min_val', [ 'type' => 'number', 'sanitize_callback' => 'floatval', 'default' => 0 ] );
+        register_setting( $group, 'wcw_cashback_status', [ 'type' => 'string', 'sanitize_callback' => [ $this, 'sanitize_yes_no' ], 'default' => 'yes' ] );
+        // Cashback acima de 100% devolve mais do que o cliente pagou: máquina de dinheiro
+        register_setting( $group, 'wcw_cashback_percent', [ 'type' => 'number', 'sanitize_callback' => function( $val ) {
+            return min( 100, absint( $val ) );
+        }, 'default' => 5 ] );
+        register_setting( $group, 'wcw_cashback_min_val', [ 'type' => 'number', 'sanitize_callback' => function( $val ) {
+            return max( 0, round( (float) wc_format_decimal( $val ), 2 ) );
+        }, 'default' => 0 ] );
         register_setting( $group, 'wcw_shortcode_color_title', [ 'type' => 'string', 'sanitize_callback' => 'sanitize_hex_color', 'default' => '#333333' ] );
         register_setting( $group, 'wcw_shortcode_color_value', [ 'type' => 'string', 'sanitize_callback' => 'sanitize_hex_color', 'default' => '#2271b1' ] );
         
@@ -74,19 +78,25 @@ class Settings {
         register_setting( $group, 'wcw_cashback_categories', [
             'type'              => 'array',
             'sanitize_callback' => function( $val ) {
-                return is_array( $val ) ? array_map( 'intval', $val ) : [];
+                return is_array( $val ) ? array_values( array_filter( array_map( 'absint', $val ) ) ) : [];
             },
             'default'           => []
         ] );
         // Trava da Recarga Manual
-        register_setting( $group, 'wcw_wallet_recharge_status', [ 
-            'type' => 'string', 
-            'sanitize_callback' => 'sanitize_text_field', 
-            'default' => 'yes' 
+        register_setting( $group, 'wcw_wallet_recharge_status', [
+            'type' => 'string',
+            'sanitize_callback' => [ $this, 'sanitize_yes_no' ],
+            'default' => 'yes'
         ] );
     }
 
-    
+    public function sanitize_yes_no( $val ) {
+        return 'no' === $val ? 'no' : 'yes';
+    }
+
+    public function settings_capability() {
+        return 'manage_woocommerce';
+    }
 
 
 

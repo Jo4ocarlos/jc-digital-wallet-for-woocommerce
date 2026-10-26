@@ -81,6 +81,8 @@ $formatted_pending = isset( $pending_balance ) ? number_format( $pending_balance
                         // Define as cores do valor baseado no STATUS real do banco de dados
                         if ( 'pending' === $txn['status'] ) {
                             $txn_text_class = 'wcw-pending-value'; // Cor Laranja para valores pendentes
+                        } elseif ( 'cancelled' === $txn['status'] ) {
+                            $txn_text_class = 'wcw-status-cancelled'; // Não conta no saldo: não pode parecer crédito
                         } else {
                             $txn_text_class = ( 'credito' === $txn['tipo'] ) ? 'wcw-status-positive' : 'wcw-status-negative';
                         }
@@ -93,6 +95,9 @@ $formatted_pending = isset( $pending_balance ) ? number_format( $pending_balance
                         if ( 'pending' === $txn['status'] ) {
                             $badge_class = 'wcw-badge-recharge'; // Alerta / Pendente
                             $badge_text  = 'Pendente';
+                        } elseif ( 'cancelled' === $txn['status'] ) {
+                            $badge_class = 'wcw-badge-cancelled';
+                            $badge_text  = 'Cancelado';
                         } elseif ( 'credito' === $txn['tipo'] ) {
                             if ( strpos( strtolower( $txn['descricao'] ), 'recarga' ) !== false ) {
                                 $badge_class = 'wcw-badge-recharge';

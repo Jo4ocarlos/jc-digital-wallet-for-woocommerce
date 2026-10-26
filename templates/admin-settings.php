@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 $selected_categories = get_option( 'wcw_cashback_categories', [] );
 $selected_categories = is_array( $selected_categories ) ? $selected_categories : [];
-$lowest_package_rate = get_option( 'lowest_package_rate', '0.01' );
 ?>
 <div class="wrap wcw-admin-container">
     <h1>
@@ -69,13 +68,13 @@ $lowest_package_rate = get_option( 'lowest_package_rate', '0.01' );
                <tr valign="top">
                     <th scope="row"><label><?php esc_html_e( 'Porcentagem (%)', 'jc-digital-wallet-for-woocommerce' ); ?></label></th>
                     <td>
-                        <input type="number" step="<?php echo esc_attr( $lowest_package_rate ); ?>" name="wcw_cashback_percent" value="<?php echo esc_attr( get_option('wcw_cashback_percent', 5) ); ?>" class="small-text" /> %
+                        <input type="number" step="1" min="0" max="100" name="wcw_cashback_percent" value="<?php echo esc_attr( get_option('wcw_cashback_percent', 5) ); ?>" class="small-text" /> %
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row"><label><?php esc_html_e( 'Valor Mín. do Pedido', 'jc-digital-wallet-for-woocommerce' ); ?></label></th>
                     <td>
-                        <input type="number" step="<?php echo esc_attr( $lowest_package_rate ); ?>" name="wcw_cashback_min_val" value="<?php echo esc_attr( get_option('wcw_cashback_min_val', 0) ); ?>" class="small-text" />
+                        <input type="number" step="0.01" min="0" name="wcw_cashback_min_val" value="<?php echo esc_attr( get_option('wcw_cashback_min_val', 0) ); ?>" class="small-text" />
                         <p class="description"><?php esc_html_e( 'O cliente só ganha cashback se gastar mais que este valor. Deixe 0 para todas as compras.', 'jc-digital-wallet-for-woocommerce' ); ?></p>
                     </td>
                 </tr>
@@ -84,7 +83,7 @@ $lowest_package_rate = get_option( 'lowest_package_rate', '0.01' );
                     <td>
                         <select name="wcw_cashback_categories[]" multiple="multiple" class="wc-enhanced-select regular-text" data-placeholder="<?php esc_attr_e( 'Todas as categorias', 'jc-digital-wallet-for-woocommerce' ); ?>">
                             <?php foreach ( $product_categories as $category ) : ?>
-                                <?php $is_selected = in_array( $category->term_id, $selected_categories, true ); ?>
+                                <?php $is_selected = in_array( (int) $category->term_id, array_map( 'intval', $selected_categories ), true ); ?>
                                 <option value="<?php echo esc_attr( $category->term_id ); ?>" <?php selected( $is_selected, true ); ?>>
                                     <?php echo esc_html( $category->name ); ?>
                                 </option>

@@ -34,6 +34,11 @@ class Shortcodes {
             'cor_valor'  => $default_value_color
         ], $atts );
 
+        // Atributo de shortcode é texto livre de quem edita o post (inclusive Colaborador).
+        // esc_attr não impede CSS extra dentro do style ("red;position:fixed;..."), só cor hex passa.
+        $params['cor_titulo'] = sanitize_hex_color( $params['cor_titulo'] ) ?: '#333333';
+        $params['cor_valor']  = sanitize_hex_color( $params['cor_valor'] ) ?: '#2271b1';
+
         // Garantimos que o CSS do frontend carregue se o shortcode for usado em qualquer outra página
         wp_enqueue_style( 'wcw-frontend-style', WCW_PLUGIN_URL . 'assets/css/frontend.css', [], WCW_VERSION );
 

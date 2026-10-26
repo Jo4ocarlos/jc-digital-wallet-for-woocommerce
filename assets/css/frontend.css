@@ -221,6 +221,11 @@
     color: #c62828;
 }
 
+.wcw-badge-cancelled {
+    background-color: #eeeeee;
+    color: #616161;
+}
+
 /* =========================================================
    Carteira Digital: Painel Minha Conta
 ========================================================= */
@@ -232,6 +237,11 @@
 
 .wcw-status-negative {
     color: #d63031 !important;
+}
+
+.wcw-status-cancelled {
+    color: #9e9e9e !important;
+    text-decoration: line-through;
 }
 
 .wcw-border-positive {
